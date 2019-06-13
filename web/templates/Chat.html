@@ -2,31 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> Chat Web 1.0 </title>
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <script src="/static/js/libs/bootstrap.min.js" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="chat.js"></script>
+
 </head>
-<body>
-<img src="/static/gifs/chat.gif/">'
-<ul id="messages"></ul>
-<input type="text" style='width: 1500px; height: 150px' id="myMessage">
-<button type="button" style='width:70px; height:25px' id = "send">Send</button>
+<body onload="whoami()">
+<body onload="loadMessages()">
+
+<table width="100%" border="1px solid">
+    <tr>
+        <td width="25%">
+            <div  class="alert alert-primary" role="alert">
+                <label id="cu_username" ></label>
+                <br/>
+                <label id="cu_name" ></label>
+            </div>
+            <div id="allusers">
+
+            </div>
+
+        </td>
+        <td width="75%">
+           <div id="messages">
+               <div id="_messages"> </div>
+
+                <br>
+                <input type="text" id="postmessage">
+                <input type="button" onclick="sendMessage()">
+            </div>
 
 
-<script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
 
+        </td>
+    </tr>
+</table>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js" charset="utf-8"></script>
-<script>
-    const socket = io();
-    socket.on('message', function (msg){
-    $('#messages').append('<li>' + msg + '</li>')
-    })
-    $('#send').on('click', function(){
-       socket.send($('#myMessage').val());
-       $('#myMessage').val('');
-    });
-</script>
 </body>
 </html>

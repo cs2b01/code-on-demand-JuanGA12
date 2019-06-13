@@ -1,5 +1,7 @@
 function getData(){
-        $('#action').append('<img src="/static/gifs/200.gif/">');
+        $('#fail').hide();
+        $('#ok').hide()
+        $('#loading').show();
         var username = $('#username').val();
         var password = $('#password').val();
         var message = JSON.stringify({
@@ -14,15 +16,17 @@ function getData(){
             data : message,
             dataType:'json',
             success: function(response){
-                //alert(JSON.stringify(response));
-                $('#action').html(response['statusText']);
-                $('#action').append('<img src="/static/gifs/giphy.gif/">');
+                //$('#action').html(response['statusText']);
             },
             error: function(response){
                 //alert(JSON.stringify(response));
-                $('#action').html(response['statusText']);
-                $('#action').append('<img src="/static/gifs/giphy2.gif/">');
-
+                if(response['status']==401){
+                    $('#loading').hide();
+                    $('#fail').show()
+                }else{
+                    $('#loading').hide();
+                    $('#ok').show()
+                }
             }
         });
     }
